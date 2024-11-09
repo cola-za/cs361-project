@@ -92,6 +92,7 @@ public class GameView extends SurfaceView implements Runnable {
 
         random = new Random();
 
+        // เรื่องหัวใจ
         life = new Life(getResources() , screenX , screenY);
     }
 
@@ -166,6 +167,7 @@ public class GameView extends SurfaceView implements Runnable {
 
             if (bird.x + bird.width < 0) {
 
+                // เรื่องหัวใจ นกบินผ่านไปได้หัวใจลด
                 if (!bird.wasShot) {
                     life.decreaseHeartCounter();
                     if(life.isDead()){
@@ -187,6 +189,7 @@ public class GameView extends SurfaceView implements Runnable {
                 bird.wasShot = false;
             }
 
+            // เรื่องหัวใจ โดนนกชน
             if (Rect.intersects(bird.getCollisionShape(), flight.getCollisionShape())) {
                 life.decreaseHeartCounter();;
                 if(life.isDead()){
@@ -212,6 +215,7 @@ public class GameView extends SurfaceView implements Runnable {
 
             canvas.drawText(score + "", screenX / 2f, 164, paint);
 
+            // เรื่องหัวใจ วาดหัวใจมุมขวาบน
             canvas.drawBitmap(life.getHeart(), life.getX(),life.getY(), paint);
 
 
@@ -235,6 +239,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
+    //reset position ของนกถ้า หัวใจลด
     private  void resetPositionAllBird(){
         for(Bird bird : birds ){
             bird.x = screenX + 1000;
@@ -291,6 +296,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
+    //แก้เรื่องกด บินกับยิงพร้อมกันไม่ได้ chat gpt
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
+// เรื่องหัวใจ
 public class Life {
 
     int x ,y ,width, height, heartCounter = 3;

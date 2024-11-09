@@ -13,6 +13,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // เรื่อง exit dialog add เพราะเตรียมปิด activity ตอนกด back หน้า menu
         MainActivity.activityList.add(this);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -40,6 +42,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        // เรื่อง exit dialog ลบเพราะ destroy อยู่แล้ว
         MainActivity.activityList.remove(this);
     }
 }

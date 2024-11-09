@@ -1,3 +1,3 @@
 # cs361-project
 
-[text](<ถ้ามีปัญหาเรื่อง build project.pdf>)
+[ถ้ามีปัญหาเรื่อง build project](<ถ้ามีปัญหาเรื่อง build project.pdf>)
