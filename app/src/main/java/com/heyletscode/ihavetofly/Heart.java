@@ -6,16 +6,15 @@ import static com.heyletscode.ihavetofly.GameView.screenRatioY;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 
 // เรื่องหัวใจ
-public class Life {
+public class Heart {
 
     int x ,y ,width, height, heartCounter = 3;
     private Bitmap heart1, heart2, heart3, heart4;
 
 
-    Life (Resources res ,int screenX , int screenY) {
+    Heart(Resources res , int screenX , int screenY) {
 
         heart1 = BitmapFactory.decodeResource(res, R.drawable.heart1);
         heart2 = BitmapFactory.decodeResource(res, R.drawable.heart2);
@@ -25,8 +24,8 @@ public class Life {
         width = heart1.getWidth();
         height = heart1.getHeight();
 
-        width /= 8;
-        height /= 8;
+        width /= 12;
+        height /= 12;
 
         width = (int) (width * screenRatioX);
         height = (int) (height * screenRatioY);
