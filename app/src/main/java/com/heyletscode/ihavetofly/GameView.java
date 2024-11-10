@@ -15,6 +15,7 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class GameView extends SurfaceView implements Runnable {
     private GameActivity activity;
     private Background background1, background2;
     private Life life;
+    private int birdLength = 4;
+    private double speedMultiple = 1;
 
     public GameView(GameActivity activity, int screenX, int screenY) {
         super(activity);
@@ -45,7 +48,6 @@ public class GameView extends SurfaceView implements Runnable {
         this.activity = activity;
 
         prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -81,9 +83,24 @@ public class GameView extends SurfaceView implements Runnable {
         paint.setTextSize(128);
         paint.setColor(Color.WHITE);
 
-        birds = new Bird[4];
+        // set ระดับความยาก
+        int difficult = prefs.getInt(LevelSelectActivity.DIFFICULT,LevelSelectActivity.FLAG_EASY);
+        if(difficult == LevelSelectActivity.FLAG_EASY){
+            birdLength = 4;
+            speedMultiple = 0.5;
+        }
+        else if(difficult == LevelSelectActivity.FLAG_NORMAL){
+            birdLength = 4;
+            speedMultiple = 1;
+        }
+        else if(difficult == LevelSelectActivity.FLAG_HARD){
+            birdLength = 4;
+            speedMultiple = 2;
+        }
 
-        for (int i = 0;i < 4;i++) {
+        birds = new Bird[birdLength];
+
+        for (int i = 0;i < birds.length;i++) {
 
             Bird bird = new Bird(getResources());
             birds[i] = bird;
@@ -148,8 +165,8 @@ public class GameView extends SurfaceView implements Runnable {
                         bullet.getCollisionShape())) {
 
                     score++;
-                    bird.x = -500;
-                    bullet.x = screenX + 500;
+                    bird.x = -1000;
+                    bullet.x = screenX + 1500;
                     bird.wasShot = true;
 
                 }
@@ -177,13 +194,14 @@ public class GameView extends SurfaceView implements Runnable {
                     resetPositionAllBird();
                 }
 
-                int bound = (int) (30 * screenRatioX);
+                // นกคูณ speed
+                int bound = (int) (30 * screenRatioX * speedMultiple);
                 bird.speed = random.nextInt(bound);
 
-                if (bird.speed < 10 * screenRatioX)
-                    bird.speed = (int) (10 * screenRatioX);
+                if (bird.speed < 10 * screenRatioX * speedMultiple)
+                    bird.speed = (int) (10 * screenRatioX * speedMultiple);
 
-                bird.x = screenX;
+                bird.x = screenX + 500;
                 bird.y = random.nextInt(screenY - bird.height);
 
                 bird.wasShot = false;

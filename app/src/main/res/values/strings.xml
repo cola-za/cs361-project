@@ -3,4 +3,11 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="exit_message">Do you want to exit the game?</string>
+    <string name="desc_back_arrow">Back arrow</string>
+    <string name="easy">Easy :</string>
+    <string name="normal">Normal :</string>
+    <string name="hard">Hard :</string>
+    <string name="desc_easy">Piece of cake, the Dementor is worn out, while Harry is bursting with energy</string>
+    <string name="desc_normal">Harry and the Dementors are evenly matched in power.</string>
+    <string name="desc_hard">Famished Dementors will have their usual movement speed doubled.</string>
 </resources>

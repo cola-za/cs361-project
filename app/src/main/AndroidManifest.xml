@@ -12,6 +12,9 @@
         <activity android:name=".GameActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.noActionBar"/>
+        <activity android:name=".LevelSelectActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.noActionBar"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape"

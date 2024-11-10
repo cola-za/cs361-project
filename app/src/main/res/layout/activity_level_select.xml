@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/desc_back_arrow"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/table_margin"
+            android:layout_marginLeft="@dimen/table_margin"
+            android:layout_marginEnd="@dimen/table_margin"
+            android:layout_marginRight="@dimen/table_margin">
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@color/colorGray"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/easy">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:text="@string/easy"
+                    android:textSize="@dimen/table_row_text_size_head" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:text="@string/desc_easy"
+                    android:textSize="@dimen/table_row_text_size_desc" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@color/colorGray"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:text="@string/normal"
+                    android:textSize="@dimen/table_row_text_size_head" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:text="@string/desc_normal"
+                    android:textSize="@dimen/table_row_text_size_desc" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@color/colorGray"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/hard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:text="@string/hard"
+                    android:textSize="@dimen/table_row_text_size_head" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:text="@string/desc_hard"
+                    android:textSize="@dimen/table_row_text_size_desc" />
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>
