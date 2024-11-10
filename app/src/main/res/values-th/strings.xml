@@ -4,4 +4,11 @@
     <string name="cancel">ยกเลิก</string>
     <string name="confirm">ยืนยัน</string>
     <string name="exit_message">คุณต้องการออกจากเกม?</string>
+    <string name="desc_back_arrow">ลูกศรย้อนกลับ</string>
+    <string name="easy">ง่าย</string>
+    <string name="normal">ปกติ</string>
+    <string name="hard">ยาก</string>
+    <string name="desc_easy">ง่ายมากๆ ผู้คุมวิญญาณ เหนื่อยล้า แฮร์รี่พลังเต็มเปี่ยม!</string>
+    <string name="desc_normal">แฮร์รี่กับผู้คุมวิญญาณมีพลังสูสีกัน</string>
+    <string name="desc_hard">ผู้คุมวิญญาณหิวโหยอย่างมาก จะมีความเร็วในการเคลี่ยนที่จากปกติคูณ 2</string>
 </resources>
