@@ -1,10 +1,16 @@
 package com.heyletscode.ihavetofly;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -45,5 +51,39 @@ public class GameActivity extends AppCompatActivity {
 
         // เรื่อง exit dialog ลบเพราะ destroy อยู่แล้ว
         MainActivity.activityList.remove(this);
+    }
+
+    public void showGameOverDialog(final int score) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.end_dialog, null);
+                builder.setView(dialogView);
+
+                // Set the dialog as non-cancelable
+                builder.setCancelable(false);
+
+                TextView textViewScore = dialogView.findViewById(R.id.textViewScoreGameOver);
+                textViewScore.setText(String.format("%1s %2s",textViewScore.getText().toString(),score));
+
+                // Create the dialog instance
+                final AlertDialog dialog = builder.create();
+
+                // Set up the positive button action
+                Button positiveButton = dialogView.findViewById(R.id.buttonBackEndGame);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(GameActivity.this, MainActivity.class));
+                        finish();
+                    }
+                });
+                // Show the dialog
+                dialog.show();
+            }
+        });
     }
 }

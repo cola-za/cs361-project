@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dialog_layout_space"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textViewHeadGameOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:ems="10"
+        android:layout_marginBottom="@dimen/dialog_layout_space"
+        android:text="@string/head_message_gameover" />
+
+    <TextView
+        android:id="@+id/textViewScoreGameOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="@dimen/score_game_over_text_size"
+        android:layout_marginBottom="@dimen/dialog_layout_space"
+        android:text="@string/score" />
+
+    <Button
+        android:id="@+id/buttonBackEndGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/button_message_gameover" />
+
+
+</LinearLayout>

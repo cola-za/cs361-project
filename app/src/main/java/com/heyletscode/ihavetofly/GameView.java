@@ -3,8 +3,6 @@ package com.heyletscode.ihavetofly;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,11 +13,9 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 public class GameView extends SurfaceView implements Runnable {
@@ -38,7 +34,7 @@ public class GameView extends SurfaceView implements Runnable {
     private Flight flight;
     private GameActivity activity;
     private Background background1, background2;
-    private Life life;
+    private Heart heart;
     private int birdLength = 4;
     private double speedMultiple = 1;
 
@@ -110,7 +106,7 @@ public class GameView extends SurfaceView implements Runnable {
         random = new Random();
 
         // เรื่องหัวใจ
-        life = new Life(getResources() , screenX , screenY);
+        heart = new Heart(getResources() , screenX , screenY);
     }
 
     @Override
@@ -186,8 +182,8 @@ public class GameView extends SurfaceView implements Runnable {
 
                 // เรื่องหัวใจ นกบินผ่านไปได้หัวใจลด
                 if (!bird.wasShot) {
-                    life.decreaseHeartCounter();
-                    if(life.isDead()){
+                    heart.decreaseHeartCounter();
+                    if(heart.isDead()){
                         isGameOver = true;
                         return;
                     }
@@ -209,8 +205,8 @@ public class GameView extends SurfaceView implements Runnable {
 
             // เรื่องหัวใจ โดนนกชน
             if (Rect.intersects(bird.getCollisionShape(), flight.getCollisionShape())) {
-                life.decreaseHeartCounter();;
-                if(life.isDead()){
+                heart.decreaseHeartCounter();;
+                if(heart.isDead()){
                     isGameOver = true;
                     return;
                 }
@@ -234,7 +230,7 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawText(score + "", screenX / 2f, 164, paint);
 
             // เรื่องหัวใจ วาดหัวใจมุมขวาบน
-            canvas.drawBitmap(life.getHeart(), life.getX(),life.getY(), paint);
+            canvas.drawBitmap(heart.getHeart(), heart.getX(), heart.getY(), paint);
 
 
             if (isGameOver) {
@@ -242,7 +238,8 @@ public class GameView extends SurfaceView implements Runnable {
                 canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
                 getHolder().unlockCanvasAndPost(canvas);
                 saveIfHighScore();
-                waitBeforeExiting ();
+//                waitBeforeExiting ();
+                activity.showGameOverDialog(score);
                 return;
             }
 

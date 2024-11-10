@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dialog_message_text_size" >18sp</dimen>
+    <dimen name="score_game_over_text_size" >48sp</dimen>
     <dimen name="dialog_space_between_button" >10dp</dimen>
     <dimen name="dialog_layout_space" >20dp</dimen>
     <dimen name="table_margin" >80dp</dimen>

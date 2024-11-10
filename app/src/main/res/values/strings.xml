@@ -10,4 +10,7 @@
     <string name="desc_easy">Piece of cake, the Dementor is worn out, while Harry is bursting with energy</string>
     <string name="desc_normal">Harry and the Dementors are evenly matched in power.</string>
     <string name="desc_hard">Famished Dementors will have their usual movement speed doubled.</string>
+    <string name="button_message_gameover">Go back to rest</string>
+    <string name="score">Score :</string>
+    <string name="head_message_gameover">Harry and the wizards have fought with all their might.</string>
 </resources>
