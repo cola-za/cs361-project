@@ -13,4 +13,7 @@
     <string name="button_message_gameover">Go back to rest</string>
     <string name="score">Score :</string>
     <string name="head_message_gameover">Harry and the wizards have fought with all their might.</string>
+    <string name="effect">Effect</string>
+    <string name="sound">Sound</string>
+    <string name="sound_set">Sound Setting</string>
 </resources>

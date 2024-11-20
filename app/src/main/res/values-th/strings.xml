@@ -14,4 +14,7 @@
     <string name="button_message_gameover">กลับไปผักผ่อน</string>
     <string name="score">คะแนน :</string>
     <string name="head_message_gameover">แฮร์รี่และผู้วิเศษได้สู้อย่างเต็มที่แล้ว</string>
+    <string name="effect">เสียงเอฟเฟ็กต์</string>
+    <string name="sound">เสียงพื้นหลัง</string>
+    <string name="sound_set">ตั้งค่าเสียง</string>
 </resources>
