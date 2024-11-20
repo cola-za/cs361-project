@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -37,6 +38,8 @@ public class GameView extends SurfaceView implements Runnable {
     private Heart heart;
     private int birdLength = 4;
     private double speedMultiple = 1;
+    private MediaPlayer backgroundMusic; // MediaPlayer for background music
+    private boolean isMuteMusic = false;
 
     public GameView(GameActivity activity, int screenX, int screenY) {
         super(activity);
@@ -107,6 +110,14 @@ public class GameView extends SurfaceView implements Runnable {
 
         // เรื่องหัวใจ
         heart = new Heart(getResources() , screenX , screenY);
+
+        // เรื่อง background music
+        isMuteMusic = prefs.getBoolean("isMuteMusic", false);
+
+        // Initialize MediaPlayer with the background music resource
+        backgroundMusic = MediaPlayer.create(activity, R.raw.background_music); // Replace with your music file
+        backgroundMusic.setLooping(true); // Loop the music
+        backgroundMusic.setVolume(1.0f, 1.0f);
     }
 
     @Override
@@ -234,11 +245,13 @@ public class GameView extends SurfaceView implements Runnable {
 
 
             if (isGameOver) {
+                if (backgroundMusic.isPlaying()) {
+                    backgroundMusic.pause();
+                }
                 isPlaying = false;
                 canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
                 getHolder().unlockCanvasAndPost(canvas);
                 saveIfHighScore();
-//                waitBeforeExiting ();
                 activity.showGameOverDialog(score);
                 return;
             }
@@ -297,7 +310,9 @@ public class GameView extends SurfaceView implements Runnable {
         isPlaying = true;
         thread = new Thread(this);
         thread.start();
-
+        if (!backgroundMusic.isPlaying() && !isMuteMusic) {
+            backgroundMusic.start(); // Resume the music when the game resumes
+        }
     }
 
     public void pause () {
@@ -305,6 +320,9 @@ public class GameView extends SurfaceView implements Runnable {
         try {
             isPlaying = false;
             thread.join();
+            if (backgroundMusic.isPlaying()) {
+                backgroundMusic.pause(); // Pause the music when the game pauses
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -345,12 +363,21 @@ public class GameView extends SurfaceView implements Runnable {
     public void newBullet() {
 
         if (!prefs.getBoolean("isMute", false))
-            soundPool.play(sound, 1, 1, 0, 0, 1);
+            soundPool.play(sound, 0.1f, 0.1f, 0, 0, 1f);
 
         Bullet bullet = new Bullet(getResources());
         bullet.x = flight.x + flight.width;
         bullet.y = flight.y + (flight.height / 2);
         bullets.add(bullet);
 
+    }
+
+    // Release resources when the game ends
+    @Override
+    protected void finalize() throws Throwable {
+        if (backgroundMusic != null) {
+            backgroundMusic.release(); // Release MediaPlayer resources
+        }
+        super.finalize();
     }
 }
