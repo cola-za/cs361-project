@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wizard\'s Wake</string>
+    <string name="cancel">Cancle</string>
+    <string name="confirm">Confirm</string>
+    <string name="exit_message">Do you want to exit the game?</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="desc_easy">Very easy, Dementor is exhausted, Harry is full of energy!</string>
+    <string name="desc_normal">Harry and the Dementors are equally powerful.</string>
+    <string name="desc_hard">Very hungry soul keeper will have double normal movement speed.</string>
+    <string name="play">Start the game</string>
+    <string name="high_score">Highest score :</string>
+    <string name="rule">Spell Manual</string>
+    <string name="game_rule">"A Guide to Defeating "</string>
+    <string name="intro_rule">To prepare for the Dementors, Harry needs to cast a Protection Charm to avoid them. Wizards reading this, please support Harry.</string>
+    <string name="rule1">1) Press the button on the bottom left to help Harry move.</string>
+    <string name="rule2">2) Press the button on the bottom right to help Harry cast a spell.</string>
+    <string name="rule3">3) When the Dementors fly past Harry, Harry will receive a Soul Poison.</string>
+    <string name="rule4">4) Harry can only receive Soul Poison 3 times. When all 3 of Harry\'s hearts are white, Harry will immediately become soulless.</string>
+    <string name="rule5">5) Wizards can keep statistics on their contributions to Harry\'s fight. The highest statistic can be seen at the top right corner of the screen.</string>
+    <string name="head_message_gameover">Harry and the wizards fought their hearts out.</string>
+    <string name="score">score :</string>
+    <string name="button_message_gameover">Back to preparing for battle</string>
+    <string name="button_ok">All right!</string>
+    <string name="chang_lang">Change language</string>
+    <string name="thai_lang">Thai language</string>
+    <string name="eng_lang">English language</string>
+    <string name="lang">Choose language</string>
+
+    // sound
+    <string name="sound">Soundtrack</string>
+    <string name="effect">Sound effects</string>
+    <string name="sound_set">Set the sound</string>
+    <string name="save">Save</string>
+</resources>

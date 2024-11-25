@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dialog_layout_space"
+    android:orientation="vertical"
+    android:background="@drawable/bg_end">
+
+
+
+
+    <TextView
+        android:id="@+id/chang_lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:ems="10"
+        android:fontFamily="@font/font_harry_potter"
+        android:textSize="28sp"
+        android:layout_marginBottom="@dimen/dialog_layout_space"
+        android:text="@string/head_message_gameover"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/eng_lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="@font/font_harry_potter"
+        android:textSize="@dimen/score_game_over_text_size"
+        android:layout_marginBottom="@dimen/dialog_layout_space"
+        android:text="@string/score"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/buttonBackEndGame"
+        android:fontFamily="@font/font_harry_potter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/button_message_gameover"
+        android:textColor="@color/black"/>
+
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/pur4"
+    >
+
+
+    <!-- ปุ่มย้อนกลับ -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/desc_back_arrow"
+
+        />
+
+    <TextView
+        android:id="@+id/lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+
+        android:text="@string/lang"
+        android:textSize="@dimen/text_size_choose"
+        android:textColor="@color/white"
+        android:fontFamily="@font/font_harry_potter"
+        android:layout_marginTop="@dimen/margin_top_choose_lang"
+/>
+
+    <Button
+        android:id="@+id/btnEnglish"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_Top_btn"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:padding="@dimen/padding_btn"
+        android:background="@drawable/bg_lang"
+        android:fontFamily="@font/font_harry_potter"
+        android:text="@string/eng_lang"
+        android:textSize="@dimen/text_size_eng"
+        android:gravity="center"
+        android:textColor="@color/black" />
+
+
+    <Button
+        android:id="@+id/btnThai"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_Top_btn"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_lang"
+        android:fontFamily="@font/font_harry_potter"
+        android:text="@string/thai_lang"
+        android:textSize="@dimen/text_size_thai"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+</LinearLayout>

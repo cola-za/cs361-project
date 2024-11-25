@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+
+    <!-- VideoView for background -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+       />
+
+    <!-- Game Title Text -->
+    <TextView
+        android:id="@+id/gameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_game"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font_harry_potter"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/margin_top_game" />
+
+    <!-- High Score Text -->
+    <TextView
+        android:id="@+id/highScoreTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:textSize="@dimen/text_size_score"
+        android:textColor="@color/white"
+        android:text="@string/high_score"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="330dp"
+        android:fontFamily="@font/font_harry_potter"
+
+    />
+
+
+    <!-- Play Text Button -->
+    <TextView
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_bottom_play"
+        android:fontFamily="@font/font_harry_potter"
+        android:text="@string/play"
+        android:textSize="@dimen/texts_ize_play"
+        android:textColor="@color/white" />
+
+
+    <!-- Rule Text centered in the layout -->
+    <TextView
+        android:id="@+id/rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginBottom="@dimen/margin_bottom_rule"
+        android:layout_marginLeft="@dimen/margin_start_end_rule"
+        android:layout_marginStart="@dimen/margin_start_end_rule"
+        android:text="@string/rule"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_rule"
+        android:fontFamily="@font/torsilpi" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chang_lang"
+        android:padding="@dimen/padding_lang"
+        android:textColor="@color/black"
+        android:background="@drawable/bg_level"
+        android:fontFamily="@font/font_harry_potter"
+        android:textSize="@dimen/text_size_lang"
+        android:layout_marginLeft="@dimen/margin_left_lang"
+        android:layout_marginStart="@dimen/margin_start_lang"
+        android:layout_marginTop="@dimen/margin_top_lang"/>
+
+
+    <Button
+        android:id="@+id/btn_sound_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/start_sound"
+        android:text="@string/sound_set"
+        android:padding="@dimen/padding_sound"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/margin_top_sound"
+        android:layout_marginLeft="@dimen/margin_left_sound"
+
+        android:background="@drawable/bg_level"
+        android:fontFamily="@font/font_harry_potter"
+        android:textSize="@dimen/text_level"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bgr1"
+    android:layout_height="wrap_content">
+
+    <!-- ปุ่มย้อนกลับ -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/desc_back_arrow"
+        />
+    <TextView
+        android:id="@+id/rule_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_harry_potter"
+        android:gravity="center"
+        android:textSize="@dimen/text_rule_top"
+        android:textColor="@color/white_y"
+        android:translationY="@dimen/tran_y_top"
+        android:translationX="@dimen/tran_x_top"
+        android:text="@string/game_rule" />
+
+    <!-- ScrollView สำหรับเลื่อนเนื้อหากฎของเกม -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/scroll_height"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <!-- TableLayout สำหรับแสดงเนื้อหาเป็นตาราง -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0"
+            android:padding="@dimen/padding_table"
+            >
+
+
+            <!-- intro -->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/rule_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/torsilpi"
+                    android:text="@string/intro_rule"
+
+                    />
+            </TableRow>
+
+            <!-- แถวที่ 1 -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/rule1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rule1"
+                    android:fontFamily="@font/torsilpi"/>
+            </TableRow>
+
+            <!-- แถวที่ 2 -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/rule2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rule2"
+                    android:fontFamily="@font/torsilpi"/>
+            </TableRow>
+
+            <!-- แถวที่ 3 -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/rule3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rule3"
+                    android:fontFamily="@font/torsilpi"/>
+            </TableRow>
+
+            <!-- แถวที่ 4 -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/rule4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rule4"
+                    android:fontFamily="@font/torsilpi"/>
+            </TableRow>
+
+            <!-- แถวที่ 5 -->
+            <TableRow>
+                <TextView
+                    android:id="@+id/rule5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rule5"
+                    android:fontFamily="@font/torsilpi"/>
+            </TableRow>
+
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+</LinearLayout>

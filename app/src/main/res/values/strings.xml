@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">วิถีแห่งผู้วิเศษ</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="exit_message">คุณต้องการออกจากเกม?</string>
+    <string name="desc_back_arrow" translatable="false">ลูกศรย้อนกลับ</string>
+    <string name="easy">ง่าย</string>
+    <string name="normal">ปกติ</string>
+    <string name="hard">ยาก</string>
+    <string name="desc_easy">ง่ายมากๆ ผู้คุมวิญญาณเหนื่อยล้า แฮร์รี่พลังเต็มเปี่ยม!</string>
+    <string name="desc_normal">แฮร์รี่กับผู้คุมวิญญาณมีพลังสูสีกัน</string>
+    <string name="desc_hard">ผู้คุมวิญญาณหิวโหยอย่างมาก จะมีความเร็วในการเคลี่อนที่จากปกติคูณ 2</string>
+    <string name="play">เริ่มเกม</string>
+    <string name="high_score">คะแนนสูงสุด :</string>
+    <string name="rule">คู่มือคาถา</string>
+//rule
+    <string name="game_rule">คู่มือคาถาปราบผู้คุมวิญญาณ </string>
+<string name="intro_rule"> เพื่อเตรียมรับมือกับผู้คุมวิญญาณแฮรรี่จำเป็นต้องร่ายคาถาพิทักษ์เพื่อหลีกเลี่ยงจากพวกเหล่านักคุมวิญญาณ
+    เหล่าผู้วิเศษที่ได้อ่านข้อความนี้โปรดเป็นกำลังใจแฮร์รี่ด้วย</string>
+    <string name ="rule1"> 1) กดปุ่มด้านซ้ายล่าง เพื่อช่วยแฮร์รี่เคลื่อนที่</string>
+    <string name ="rule2">2) กดปุ่มด้านขวาล่าง เพื่อช่วยแฮร์รี่ร่ายคาถา</string>
+    <string name ="rule3">3) เมื่อผู้คุมวิญญาณบินผ่านแฮรี่ แฮร์รี่จะได้รับจุนพิษวิญญาณ</string>
+    <string name ="rule4"> 4) แฮร์รี่จะได้รับจุนพิษวิญญาณได้เพียง 3 ครั้ง เท่านั้น เมื่อหัวใจทั้ง 3 ดวงของแฮร์รี่เป็นสีขาว แฮร์รี่จะไร้วิญญาณทันที</string>
+    <string name ="rule5">5) เหล่าผู้วิเศษสามารถเก็บสถิติในการช่วยแฮรี่สู้ โดยสังเกตุสถิติสูงสุดที่ทำได้ที่บริเวณด้านบนมือขวของหน้าจอ</string>
+
+    <string name="head_message_gameover">แฮร์รี่และผู้วิเศษได้สู้อย่างเต็มที่แล้ว</string>
+    <string name="score">คะแนน :</string>
+    <string name="button_message_gameover">กลับไปเตรียมรบ</string>
+//lang
+    <string name="button_ok">ตกลง</string>
+    <string name="chang_lang">เปลี่ยนภาษา</string>
+    <string name="thai_lang">ภาษาไทย</string>
+    <string name="eng_lang">ภาษาอังกฤษ</string>
+    <string name="lang">เลือกภาษา</string>
+
+    // sound
+    <string name="sound">เพลงประกอบ</string>
+    <string name="effect">เสียงเอฟเฟกต์</string>
+    <string name="sound_set">ตั้งค่าเสียง</string>
+    <string name="save">บันทึก</string>
+</resources>

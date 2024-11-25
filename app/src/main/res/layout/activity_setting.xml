@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/pur4">
+
+    <!-- ปุ่มย้อนกลับ -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/back_mgl"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/desc_back_arrow"
+        android:layout_marginTop="@dimen/back_margin_top"
+        android:layout_marginStart="@dimen/back_margin_start" />
+
+    <!-- กลุ่มตั้งค่าเสียง -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/sound_padding"
+        android:layout_marginTop="@dimen/sound_margin_top"
+        android:background="@drawable/bg_lang"
+       >
+
+        <!-- ชื่อเรื่อง -->
+        <TextView
+            android:id="@+id/sound_settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/title_sound_mgBT"
+            android:gravity="center"
+            android:text="@string/sound_set"
+            android:textSize="@dimen/title_sound_text_size"
+            android:textStyle="bold"
+            android:fontFamily="@font/font_harry_potter"
+            android:textColor="@color/black" />
+
+        <!-- สวิตช์สำหรับเพลง -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_music"
+            android:layout_width="@dimen/switch_width"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/switch_mgbt"
+            android:padding="@dimen/sw_song_padding"
+            android:text="@string/sound"
+            android:textSize="@dimen/switch_padding"
+            android:fontFamily="@font/font_harry_potter"
+            android:textColor="@color/black"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <!-- สวิตช์สำหรับเอฟเฟกต์เสียง -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_sound_effects"
+            android:layout_width="@dimen/sw_effect_width"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:padding="@dimen/sw_effect_padding"
+            android:text="@string/effect"
+            android:textSize="@dimen/sw_effect_text_size"
+            android:fontFamily="@font/font_harry_potter"
+            android:textColor="@color/black"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+</LinearLayout>

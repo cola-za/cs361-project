@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg1"
+    android:layout_height="wrap_content">
+
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/desc_back_arrow"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/table_margin"
+            android:layout_marginLeft="@dimen/table_margin"
+            android:layout_marginEnd="@dimen/table_margin"
+            android:layout_marginRight="@dimen/table_margin"
+            >
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@drawable/bg_level"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/easy"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:text="@string/easy"
+                    android:fontFamily="@font/font_harry_potter"
+                    android:textSize="@dimen/table_row_text_size_head"
+                    android:textColor="@color/black"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/torsilpi"
+                    android:text="@string/desc_easy"
+                    android:textSize="@dimen/table_row_text_size_desc"
+                    android:textColor="@color/black"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@drawable/bg_level"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/normal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:fontFamily="@font/font_harry_potter"
+                    android:text="@string/normal"
+                    android:textSize="@dimen/table_row_text_size_head"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/torsilpi"
+                    android:text="@string/desc_normal"
+                    android:textSize="@dimen/table_row_text_size_desc"
+                    android:textColor="@color/black"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/table_row_space_bottom"
+                android:background="@drawable/bg_level"
+                android:padding="@dimen/table_row_padding"
+                android:id="@+id/hard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:text="@string/hard"
+                    android:fontFamily="@font/font_harry_potter"
+                    android:textSize="@dimen/table_row_text_size_head"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/table_row_text_view_padding"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/torsilpi"
+                    android:text="@string/desc_hard"
+                    android:textSize="@dimen/table_row_text_size_desc"
+                    android:textColor="@color/black"/>
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>
