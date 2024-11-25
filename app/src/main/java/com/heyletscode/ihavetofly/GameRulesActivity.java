@@ -33,6 +33,7 @@ public class GameRulesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(GameRulesActivity.this,MainActivity.class);
              GameRulesActivity.this.startActivity(intent);
+             finish(); // Avoid stacking activities
             }
         });
 

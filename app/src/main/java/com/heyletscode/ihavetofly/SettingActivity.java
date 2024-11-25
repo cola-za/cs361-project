@@ -26,6 +26,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this,MainActivity.class);
                 SettingActivity.this.startActivity(intent);
+                finish(); // Avoid stacking activities
             }
         });
         SwitchCompat switchMusic = findViewById(R.id.switch_music);

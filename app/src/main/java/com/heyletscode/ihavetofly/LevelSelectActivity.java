@@ -21,52 +21,37 @@ public class LevelSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // เรื่อง exit dialog add เพราะเตรียมปิด activity ตอนกด back หน้า menu
         MainActivity.activityList.add(this);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_level_select);
 
-        prefs = LevelSelectActivity.this.getSharedPreferences("game", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("game", Context.MODE_PRIVATE);
 
         ImageButton imageButtonBack = findViewById(R.id.backButton);
-        imageButtonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LevelSelectActivity.this,MainActivity.class);
-                LevelSelectActivity.this.startActivity(intent);
-            }
+        imageButtonBack.setOnClickListener(view -> {
+            startActivity(new Intent(LevelSelectActivity.this, MainActivity.class));
+            finish(); // Avoid stacking activities
         });
 
-        final Intent intent = new Intent(LevelSelectActivity.this,GameActivity.class);
+        final Intent intent = new Intent(LevelSelectActivity.this, GameActivity.class);
 
-        TableRow easy = findViewById(R.id.easy);
-        TableRow normal = findViewById(R.id.normal);
-        TableRow hard = findViewById(R.id.hard);
-
-        easy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveDifficultFlag(FLAG_EASY);
-                LevelSelectActivity.this.startActivity(intent);
-            }
+        findViewById(R.id.easy).setOnClickListener(view -> {
+            saveDifficultFlag(FLAG_EASY);
+            startActivity(intent);
+            finish();
         });
 
-        normal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveDifficultFlag(FLAG_NORMAL);
-                LevelSelectActivity.this.startActivity(intent);
-            }
+        findViewById(R.id.normal).setOnClickListener(view -> {
+            saveDifficultFlag(FLAG_NORMAL);
+            startActivity(intent);
+            finish();
         });
 
-        hard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveDifficultFlag(FLAG_HARD);
-                LevelSelectActivity.this.startActivity(intent);
-            }
+        findViewById(R.id.hard).setOnClickListener(view -> {
+            saveDifficultFlag(FLAG_HARD);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -88,9 +73,11 @@ public class LevelSelectActivity extends AppCompatActivity {
         MainActivity.activityList.remove(this);
     }
 
-    private void saveDifficultFlag(int difficultFlag){
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(DIFFICULT, difficultFlag);
-        editor.apply();
+    private void saveDifficultFlag(int difficultFlag) {
+        new Thread(() -> {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt(DIFFICULT, difficultFlag);
+            editor.apply();
+        }).start();
     }
 }

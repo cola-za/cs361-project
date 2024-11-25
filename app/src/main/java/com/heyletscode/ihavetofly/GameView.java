@@ -50,6 +50,10 @@ public class GameView extends SurfaceView implements Runnable {
     private final Rect shootButtonRect;
     private final Bitmap jumpBut;
     private final Rect jumpButtonRect;
+    private final List<Bullet> bulletPool;  // Pool for reusable bullets
+
+    private long lastBulletTime = 0;
+    private final int bulletCooldown = 300; // Cooldown in milliseconds
 
 
 
@@ -76,8 +80,8 @@ public class GameView extends SurfaceView implements Runnable {
 //กำหนดขนาดหน้าจอ
         this.screenX = screenX;
         this.screenY = screenY;
-        screenRatioX = 1920f / screenX;
-        screenRatioY = 1080f / screenY;
+        screenRatioX = screenX / 1920f ;
+        screenRatioY = screenY / 1080f ;
 //สร้างพื้นหลัง
         background1 = new Background(screenX, screenY, getResources());
         background2 = new Background(screenX, screenY, getResources());
@@ -85,6 +89,7 @@ public class GameView extends SurfaceView implements Runnable {
         flight = new Flight(this, screenY, getResources());
 
         bullets = new ArrayList<>();
+        bulletPool = new ArrayList<>();
         background2.x = screenX;
 
         paint = new Paint();
@@ -104,14 +109,14 @@ public class GameView extends SurfaceView implements Runnable {
 
         // โหลดรูปภาพปุ่มยิง
         shootButtonBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.but_shoot);
-        int shootButtonWidth = 590;  // ความกว้างของปุ่มยิง
-        int shootButtonHeight = 470; // ความสูงของปุ่มยิง
+        int shootButtonWidth = (int)(590 * screenRatioX);  // ความกว้างของปุ่มยิง
+        int shootButtonHeight = (int)(470 * screenRatioX); // ความสูงของปุ่มยิง
         shootButtonRect = new Rect(screenX - shootButtonWidth + 20, screenY - shootButtonHeight - 20, screenX - 20, screenY + 60);
 
 // โหลดรูปภาพปุ่มกระโดด
         jumpBut = BitmapFactory.decodeResource(getResources(), R.drawable.but_jump);
-        int jumpButtonWidth = 590;  // ความกว้างของปุ่มกระโดด
-        int jumpButtonHeight = 470; // ความสูงของปุ่มกระโดด
+        int jumpButtonWidth = (int)(590 * screenRatioX);  // ความกว้างของปุ่มกระโดด
+        int jumpButtonHeight = (int)(470 * screenRatioX); // ความสูงของปุ่มกระโดด
 
 // ปรับตำแหน่งของปุ่มกระโดดให้ไปอยู่ทางฝั่งซ้าย
         jumpButtonRect = new Rect(20, screenY - jumpButtonHeight - 20, jumpButtonWidth + 20, screenY + 60);
@@ -166,23 +171,27 @@ public class GameView extends SurfaceView implements Runnable {
 
         List<Bullet> trash = new ArrayList<>();
 
-        for (Bullet bullet : bullets) {
-            if (bullet.x > screenX)
-                trash.add(bullet);
-            bullet.x += (int) (50 * screenRatioX);
+        synchronized (bullets) {
+            for (Bullet bullet : bullets) {
+                if (bullet.x > screenX) {
+                    trash.add(bullet);
+                }
+                bullet.x += (int) (50 * screenRatioX);
 
-            for (Devil bird : birds) {
-                if (Rect.intersects(bird.getCollisionShape(), bullet.getCollisionShape())) {
-                    score++;
-                    bird.x = -500;
-                    bullet.x = screenX + 500;
-                    bird.wasShot = true;
+                for (Devil bird : birds) {
+                    if (Rect.intersects(bird.getCollisionShape(), bullet.getCollisionShape())) {
+                        score++;
+                        bird.x = (int) (-500 * screenRatioX);
+                        bullet.x = (int) ((screenX + 1000) * screenRatioX);
+                        bird.wasShot = true;
+                    }
                 }
             }
+            for (Bullet bullet : trash) {
+                bullets.remove(bullet);
+                bulletPool.add(bullet); // Return bullet to the pool
+            }
         }
-
-        for (Bullet bullet : trash)
-            bullets.remove(bullet);
 
         for (Devil bird : birds) {
             bird.x -= bird.speed;
@@ -230,7 +239,10 @@ public class GameView extends SurfaceView implements Runnable {
                 }
 
                 bird.x = screenX;
-                bird.y = random.nextInt(screenY - bird.height);
+                int topOffset = (int)(50 * screenRatioY); // Space to keep from the top
+                int bottomOffset = (int)(50 * screenRatioY); // Space to keep from the bottom
+
+                bird.y = random.nextInt(screenY - bird.height - topOffset - bottomOffset) + topOffset;
 
                 bird.wasShot = false;
             }
@@ -252,17 +264,18 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
 
-            for (Devil bird : birds)
-                canvas.drawBitmap(bird.getBird(), bird.x, bird.y, paint);
-
-            canvas.drawText(score + "", screenX / 2f, 164, paint);
-
-            canvas.drawBitmap(life.getHeart(), life.getX(), life.getY(), paint);
-
             // วาดปุ่มยิง
             canvas.drawBitmap(shootButtonBitmap, null, shootButtonRect, paint);
             // วาดปุ่มกระโดด
             canvas.drawBitmap(jumpBut, null, jumpButtonRect, paint);
+
+            for (Devil bird : birds)
+                canvas.drawBitmap(bird.getBird(), bird.x, bird.y, paint);
+
+            canvas.drawText(score + "", (screenX / 2f) , (164 * screenRatioY), paint);
+
+            canvas.drawBitmap(life.getHeart(), life.getX(), life.getY(), paint);
+
 //ถ้าเกมจบ
             if (isGameOver) {
                 isPlaying = false;
@@ -279,8 +292,12 @@ public class GameView extends SurfaceView implements Runnable {
 
             canvas.drawBitmap(flight.getFlight(), flight.x, flight.y, paint);
 
-            for (Bullet bullet : bullets)
-                canvas.drawBitmap(bullet.bullet, bullet.x, bullet.y, paint);
+            synchronized (bullets) {
+                for (Bullet bullet : bullets)
+                    canvas.drawBitmap(bullet.bullet, bullet.x, bullet.y, paint);
+            }
+
+
 
             getHolder().unlockCanvasAndPost(canvas);
         }
@@ -288,7 +305,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void resetPositionAllBird() {
         for (Devil bird : birds) {
-            bird.x = screenX + 1000;
+            bird.x = (int)((screenX + 1000) * screenRatioX);
             bird.y = random.nextInt(screenY - bird.height);
         }
     }
@@ -402,12 +419,22 @@ public class GameView extends SurfaceView implements Runnable {
 
 
     public void newBullet() {
-        Bullet bullet = new Bullet(getResources());
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastBulletTime < bulletCooldown) return; // Cooldown
+        lastBulletTime = currentTime;
+
+        Bullet bullet;
+        if (!bulletPool.isEmpty()) {
+            bullet = bulletPool.remove(bulletPool.size() - 1);
+        } else {
+            bullet = new Bullet(getResources());
+        }
+
         bullet.x = flight.x + flight.width;
         bullet.y = flight.y - flight.height / 7;
-        bullets.add(bullet);
-
-        // เล่นเสียงเมื่อยิง
+        synchronized (bullets) {
+            bullets.add(bullet);
+        }
 
         if (!prefs.getBoolean("isMute", false))
             soundPool.play(sound, 0.1f, 0.1f, 0, 0, 1f);

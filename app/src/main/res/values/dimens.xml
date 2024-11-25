@@ -22,7 +22,7 @@
     <dimen name="margin_top_game">60dp</dimen>
     <dimen name ="text_size_score">40sp</dimen>
     <dimen name="margin_bottom_play">100dp</dimen>
-    <dimen name="texts_ize_play">64sp</dimen>
+    <dimen name="texts_ize_play">54sp</dimen>
     <dimen name ="margin_bottom_rule">16dp</dimen>
     <dimen name="margin_start_end_rule">690dp</dimen>
     <dimen name="size_rule">24sp</dimen>
@@ -40,7 +40,7 @@
     <dimen name="margin_left_sound">20sp</dimen>
 
 
-<dimen name="text_game">110sp</dimen>
+<dimen name="text_game">80sp</dimen>
     <dimen name="text_level">20sp</dimen>
     <dimen name ="text_rule_top">65sp</dimen>
     <dimen name ="tran_y_top">-10dp</dimen>

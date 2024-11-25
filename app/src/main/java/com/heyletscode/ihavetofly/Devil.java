@@ -83,10 +83,10 @@ public class Devil {
         // ลดพื้นที่การชนโดยเพิ่มระยะขอบ (margin) เข้าไปในกรอบ
         int margin = 100; // ระยะขอบที่ต้องการลด
         return new Rect(
-                x + margin,         // ซ้ายขยับเข้ามา
-                y + margin,         // บนขยับลงมา
-                x + width - margin, // ขวาขยับเข้ามา
-                y + height - margin // ล่างขยับขึ้นมา
+                x + (int)(margin * screenRatioX),         // ซ้ายขยับเข้ามา
+                y + (int)(margin * screenRatioY),         // บนขยับลงมา
+                x + width - (int)(margin * screenRatioX), // ขวาขยับเข้ามา
+                y + height - (int)(margin * screenRatioY) // ล่างขยับขึ้นมา
         );
     }
 
