@@ -3,6 +3,8 @@ package com.heyletscode.ihavetofly;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,11 +15,14 @@ import android.widget.ScrollView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class GameRulesActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLanguage();
 
         // เรื่อง exit dialog add เพราะเตรียมปิด activity ตอนกด back หน้า menu
         MainActivity.activityList.add(this);
@@ -56,6 +61,22 @@ public class GameRulesActivity extends AppCompatActivity {
         rule4.setText(getString(R.string.rule4));
         rule5.setText(getString(R.string.rule5));
 
+    }
+
+    // Method to load the language from SharedPreferences
+    private void loadLanguage() {
+        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        String langCode = prefs.getString("language", ""); // Default to English if no language is set
+        Locale newLocale = new Locale(langCode);
+        Configuration config = getResources().getConfiguration();
+        if(!langCode.isEmpty()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLocale(newLocale);
+            } else {
+                config.locale = newLocale;
+            }
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        }
     }
 }
 

@@ -6,8 +6,10 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -25,6 +27,8 @@ import android.view.LayoutInflater;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
@@ -35,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        loadLanguage();
 
         setContentView(R.layout.activity_main);
         activityList.add(this);
@@ -148,5 +151,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         activityList.remove(this);
+    }
+
+    // Method to load the language from SharedPreferences
+    private void loadLanguage() {
+        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        String langCode = prefs.getString("language", ""); // Default to English if no language is set
+        Locale newLocale = new Locale(langCode);
+        Configuration config = getResources().getConfiguration();
+        if(!langCode.isEmpty()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLocale(newLocale);
+            } else {
+                config.locale = newLocale;
+            }
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        }
     }
 }
