@@ -38,4 +38,10 @@
     <string name="effect">เสียงเอฟเฟกต์</string>
     <string name="sound_set">ตั้งค่าเสียง</string>
     <string name="save">บันทึก</string>
+    <string name="game_pause">เกมหยุดชั่วคราว</string>
+    <string name="ask_start">คุณต้องการเริ่มเกมหรือไม่?</string>
+    <string name="start">เริ่ม</string>
+    <string name="ask_resume_or_exit">เกมหยุดชั่วคราว คุณต้องการเล่นต่อหรือไม่?</string>
+    <string name="exit">ออกจากเกม</string>
+    <string name="resume">เล่นต่อ</string>
 </resources>

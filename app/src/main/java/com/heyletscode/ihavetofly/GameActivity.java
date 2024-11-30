@@ -20,6 +20,7 @@ import java.util.Locale;
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
+    private boolean isDialogShowing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        gameView.resume();
+        loadLanguage();
     }
 
     @Override
@@ -60,10 +61,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void showGameOverDialog(final int score) {
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        runOnUiThread(() -> {
+            if (!isDialogShowing) { // Ensure no other dialog is showing
+                isDialogShowing = true;
                 AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.end_dialog, null);
@@ -73,20 +73,19 @@ public class GameActivity extends AppCompatActivity {
                 builder.setCancelable(false);
 
                 TextView textViewScore = dialogView.findViewById(R.id.eng_lang);
-                textViewScore.setText(String.format("%1s %2s",textViewScore.getText().toString(),score));
+                textViewScore.setText(String.format("%1s %2s", textViewScore.getText().toString(), score));
 
                 // Create the dialog instance
                 final AlertDialog dialog = builder.create();
 
                 // Set up the positive button action
                 Button positiveButton = dialogView.findViewById(R.id.buttonBackEndGame);
-                positiveButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(GameActivity.this, MainActivity.class));
-                        finish();
-                    }
+                positiveButton.setOnClickListener(v -> {
+                    startActivity(new Intent(GameActivity.this, MainActivity.class));
+                    finish();
+                    isDialogShowing = false; // Reset the flag
                 });
+
                 // Show the dialog
                 dialog.show();
             }
@@ -107,5 +106,53 @@ public class GameActivity extends AppCompatActivity {
             }
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
+    }
+
+    // Show dialog to pause at the start and resume the game
+    public void showStartDialog() {
+        runOnUiThread(() -> {
+            if (!isDialogShowing) { // Ensure no other dialog is showing
+                isDialogShowing = true;
+                new AlertDialog.Builder(GameActivity.this)
+                        .setTitle(getText(R.string.game_pause).toString())
+                        .setMessage(getText(R.string.ask_start).toString())
+                        .setPositiveButton(getText(R.string.start).toString(), (dialog, which) -> {
+                            // Resume the game when the user clicks "Start"
+                            gameView.resume();
+                            isDialogShowing = false; // Reset the flag
+                        })
+                        .setCancelable(false) // Prevent closing the dialog without interaction
+                        .show();
+            }
+        });
+    }
+
+    private void showPauseDialog() {
+        runOnUiThread(() -> {
+            if (!isDialogShowing) { // Ensure no other dialog is showing
+                isDialogShowing = true;
+                new AlertDialog.Builder(GameActivity.this)
+                        .setTitle(getText(R.string.game_pause).toString())
+                        .setMessage(getText(R.string.ask_resume_or_exit).toString())
+                        .setPositiveButton(getText(R.string.resume).toString(), (dialog, which) -> {
+                            // Resume the game when the user clicks "Resume"
+                            gameView.resume();
+                            isDialogShowing = false; // Reset the flag
+                        })
+                        .setNegativeButton(getText(R.string.exit).toString(), (dialog, which) -> {
+                            // Exit the game
+                            finish();
+                            isDialogShowing = false; // Reset the flag
+                        })
+                        .setCancelable(false) // Prevent closing the dialog without interaction
+                        .show();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        gameView.pause();
+        showPauseDialog();
     }
 }

@@ -34,4 +34,10 @@
     <string name="effect">Sound effects</string>
     <string name="sound_set">Set the sound</string>
     <string name="save">Save</string>
+    <string name="game_pause">Game Paused</string>
+    <string name="ask_start">Do you want to start the game?</string>
+    <string name="start">Start</string>
+    <string name="ask_resume_or_exit">The game is paused. Do you want to resume?</string>
+    <string name="exit">Exit</string>
+    <string name="resume">Resume</string>
 </resources>

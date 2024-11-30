@@ -15,6 +15,7 @@ import android.media.SoundPool;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +56,34 @@ public class GameView extends SurfaceView implements Runnable {
     private long lastBulletTime = 0;
     private final int bulletCooldown = 300; // Cooldown in milliseconds
 
+    private boolean isFirstStart = true;
+
 
 
     public GameView(GameActivity activity, int screenX, int screenY) {
         super(activity);
+
+        getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                // Show the dialog to start/resume the game
+                if(isFirstStart){
+                    resume();
+                    isFirstStart = false;
+                }else{
+                    draw();
+                    if(!isGameOver)activity.showStartDialog();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                pause();
+            }
+        });
 
         this.activity = activity;
         prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
